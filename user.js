@@ -3,7 +3,8 @@
 // @namespace    http://tampermonkey.net/
 // @version      1.2
 // @description  Automatically removes watermarks in-place and provides efficient high-res download options.
-// @author       You
+// @author       tizee
+// @icon         https://www.google.com/s2/favicons?domain=gemini.google.com
 // @match        https://gemini.google.com/*
 // @grant        GM_xmlhttpRequest
 // @grant        GM_download
@@ -330,10 +331,10 @@
     // --- Automatic Replacement Logic ---
     async function autoProcessImage(img) {
         if (!engine || processingQueue.has(img) || img.dataset.watermarkProcessed) return;
-        
+
         processingQueue.add(img);
         img.dataset.watermarkProcessed = 'processing';
-        
+
         try {
             const originalSrc = img.src;
             const blob = await fetchBestImageBlob(img);
@@ -342,11 +343,11 @@
                 const processedCanvas = await engine.removeWatermarkFromImage(bitmap);
                 const cleanBlob = await canvasToBlob(processedCanvas);
                 const newUrl = URL.createObjectURL(cleanBlob);
-                
+
                 // Store original and replace in-place
                 img.dataset.originalSrc = originalSrc;
                 img.src = newUrl;
-                img.srcset = ''; 
+                img.srcset = '';
                 img.dataset.watermarkProcessed = 'true';
             } else {
                 img.dataset.watermarkProcessed = 'failed';
@@ -508,7 +509,7 @@
         engine = await WatermarkEngine.create();
         createUI();
         updateVisibility();
-        
+
         const observer = new MutationObserver(debounce(updateVisibility, 300));
         observer.observe(document.body, { childList: true, subtree: true });
     };
