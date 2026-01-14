@@ -10,6 +10,10 @@
 // @connect      googleusercontent.com
 // @connect      *
 // @run-at       document-start
+// @updateURL    https://github.com/tizee-tampermonkey-scripts/nanobanana-watermark-remover/raw/main/user.js
+// @downloadURL  https://github.com/tizee-tampermonkey-scripts/nanobanana-watermark-remover/raw/main/user.js
+// @homepageURL  https://github.com/tizee-tampermonkey-scripts/nanobanana-watermark-remover
+// @supportURL   https://github.com/tizee-tampermonkey-scripts/nanobanana-watermark-remover/issues
 // ==/UserScript==
 
 (function() {
