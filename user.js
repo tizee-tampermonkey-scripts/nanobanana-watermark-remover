@@ -139,7 +139,6 @@
 
   let engine = null;
   const processingQueue = new Set();
-  const processedImages = new WeakSet(); // Track processed images more efficiently
 
   // Process all images, skipping those already in queue
   const processAllImages = () => {
